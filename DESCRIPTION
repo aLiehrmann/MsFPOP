@@ -1,0 +1,20 @@
+Package: MsFPOP
+Type: Package
+Title: Ms.Fpop: An Exact and Fast Segmentation Algorithm With a Multiscale Penalty
+Version: 1.0
+Authors@R: 
+    c(person(given = "Arnaud",
+           family = "Liehrmann",
+           role = c("aut", "cre"),
+           email = "arnaud.liehrmann@universite-paris-saclay.fr"),
+    person(given = "Guillem",
+           family = "Rigaill",
+           role = c("aut"))
+    )   
+Description:  Given a time series in R^n with a piece-wise constant mean and independent noises, we propose an exact dynamic programming algorithm to minimize a least square criterion with a multiscale penalty promoting well-spread changepoints. Such a penalty has been proposed in Verzelen et al. (2020), and it achieves optimal rates for changepoint detection and changepoint localization (arXiv:2010.11470). Our proposed algorithm, named Ms.Fpop, extends functional pruning ideas of Rigaill 2015 and Maidstone et al. 2017 to multiscale penalties. For large signals, n >= 10^5, with relatively few real changepoints, Ms.Fpop is typically quasi-linear and an order of magnitude faster than PELT. We propose an efficient C++ implementation interfaced with R of Ms.Fpop allowing to segment a profile of up to n = 10^6 in a matter of seconds.
+URL: https://github.com/aLiehrmann/MsFPOP
+BugReports: https://github.com/aLiehrmann/MsFPOP/issues
+License: GPL-3
+LinkingTo: Rcpp
+RoxygenNote: 7.1.2
+LazyData: true

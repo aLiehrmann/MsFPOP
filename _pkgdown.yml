@@ -1,0 +1,24 @@
+template:
+  bootswatch: cosmo
+  bootstrap: 5
+navbar:
+  bg: dark
+  structure:
+    left: [theory, calibration, benchmark, reference, news] 
+    right: [github]
+  components:
+    theory:
+      text: Multiscale penalty
+      href: articles/theory.html
+    calibration:
+      text: Calibration
+      href: articles/calibration.html
+    benchmark:
+      text: Benchmark
+      href: articles/benchmark.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
