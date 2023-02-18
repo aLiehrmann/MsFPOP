@@ -42,8 +42,8 @@ remotes::install_github("aLiehrmann/MsFPOP")
 
 ## Where can I learn more?
 
-See the [multiscale penalty section](articles/theory.html) for a gentle introduction
-on the multiscale penalty. See the [calibration tutorial](articles/calibration.html) for details on how to calibrate the multiscale penalty. Details regarding the multiscale penalty can be found in Verzelen et al. (2020). Details regarding functional pruning ideas can be found in Rigaill (2015) and Maidstone et al. (2017).
+See the [multiscale penalty section](https://aliehrmann.github.io/MsFPOP/articles/theory.html) for a gentle introduction
+on the multiscale penalty. See the [calibration tutorial](https://aliehrmann.github.io/MsFPOP/articles/calibration.html) for details on how to calibrate the multiscale penalty. Details regarding the multiscale penalty can be found in Verzelen et al. (2020). Details regarding functional pruning ideas can be found in Rigaill (2015) and Maidstone et al. (2017).
 
 ## References 
   
