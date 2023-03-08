@@ -9,7 +9,7 @@
 #' @param beta A constant used in the the penalty.
 #' @param alpha A constant used in the the penalty.
 #' (recommended: gamma+beta*log(length(y)))
-#' @param sampling_method A sampling method for changepoint candidates ("rand, "all").
+#' @param sampling_method A sampling method for changepoint candidates ("rand", "all").
 #' @param sampling_method_parameter A parameter used by the sampling method.
 #' @param wt A vector of weights associated to the observations.
 #' @return A list that includes the estimated position of the changepoints.
@@ -36,6 +36,9 @@ MsFPOP <- function(
     stop("Alpha should be zero or a positive real number (recommended : gamma+beta*log(length(y)).")
   }
   
+  if (!sampling_method%in%c("rand","all")) {
+    stop("sampling_method should be 'rand' or 'all'")
+  }
   return (MsFPOP_cpp(y, beta, alpha, sampling_method, sampling_method_parameter, wt))
 }
 
