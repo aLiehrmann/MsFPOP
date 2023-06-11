@@ -4,18 +4,12 @@ template:
 navbar:
   bg: dark
   structure:
-    left: [theory, calibration, benchmark, reference, news] 
+    left: [quick, reference, news] 
     right: [github]
   components:
-    theory:
-      text: Multiscale penalty
-      href: articles/theory.html
-    calibration:
-      text: Calibration
-      href: articles/calibration.html
-    benchmark:
-      text: Benchmark
-      href: articles/benchmark.html
+    quick:
+      text: Quick start guide
+      href: articles/quickStart.html
     reference:
       text: Reference
       href: reference/index.html

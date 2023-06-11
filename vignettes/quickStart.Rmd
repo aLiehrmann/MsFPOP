@@ -1,0 +1,44 @@
+---
+title: "Quick start guide"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick start guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+After successfully importing MsFPOP, we can identify changepoints within a singal 
+by using the Ms.FPOP algorithm, through the function of the same name (``MsFPOP()``).
+For this brief demonstration, the constants $\gamma=9$ and $\beta=2.25$ have been
+calibrated based on simulations from Liehrmann and Rigaill 2023. The \textit{iid} Gaussian signal of variance 1 is affected by 2 changepoints occuring at position 
+200 and 400. The mean values corresponding to the initial, intermediate, and final
+segments are 0, $\sqrt{\frac{1}{6}}$, and 0 respectively.
+
+```{r}
+library(MsFPOP)
+set.seed(1)
+beta  <- 2.25
+gamma <- 9
+n     <- 600
+mu    <- rep(c(0,sqrt(100/n),0), rep(200,3))
+y     <- rnorm(n)+mu
+cp    <- MsFPOP(y=y, beta=beta, alpha=gamma+beta*log(n))$changepoint
+cp 
+```
+
+
+``MsFPOP()`` estimates two changepoints at positions 200 and 402. It should be noted 
+that the latter position represents the overall signal length, a value that 
+``MsFPOP()`` invariably returns.
+
+# References 
+
+Liehrmann, A. and Rigaill, G. Ms.Fpop: An Exact and Fast Segmentation
+Algorithm With a Multiscale Penalty (2023) [doi:10.48550/arXiv.2303.08723](https://doi.org/10.48550/arXiv.2303.08723).
