@@ -8,6 +8,7 @@ MsFPOP(
   y,
   beta,
   alpha,
+  min_segment = 0,
   sampling_method = "rand",
   sampling_method_parameter = 1,
   wt
@@ -21,7 +22,9 @@ MsFPOP(
 \item{alpha}{A constant used in the the penalty.
 (recommended: gamma+beta*log(length(y)))}
 
-\item{sampling_method}{A sampling method for changepoint candidates ("rand, "all").}
+\item{min_segment}{A constraint on the minimum segment length.}
+
+\item{sampling_method}{A sampling method for changepoint candidates ("rand", "all").}
 
 \item{sampling_method_parameter}{A parameter used by the sampling method.}
 

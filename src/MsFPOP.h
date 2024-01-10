@@ -13,6 +13,7 @@ private:
     Interval d;
     double beta;
     double alpha;
+    int min_segment;
     std::vector<double> wt;
     std::vector<int> cp;
     std::vector<int> (*sampling_method)(int, int, int);
@@ -24,6 +25,7 @@ public:
      * @param[in] y A vector of observations.
      * @param[in] beta A constant used in the calculation of the penalty.
      * @param[in] alpha A constant used in the calculation of the penalty.
+     * @param[in] min_segment A constraint on the minimum segment length.
      * @param[in] sampling_method A sampling method for candidates.
      * @param[in] param_method A parameter used by the sampling method.
      * @param[in] wt A vector of weights associated to the observations.    
@@ -32,6 +34,7 @@ public:
         std::vector<double> y_,
         double beta_,
         double alpha_, 
+        int min_segment_,
         std::vector<int> (*sampling_method_)(int, int, int),
         int para_method_,
         std::vector<double> wt_ = {0}

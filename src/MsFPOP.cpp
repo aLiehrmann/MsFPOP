@@ -15,6 +15,7 @@ MsFPOP::MsFPOP(
     std::vector<double> y_,
     double beta_,
     double alpha_,
+    int min_segment_,
     std::vector<int> (*sampling_method_)(int, int, int),
     int sampling_method_parameter_, 
     std::vector<double>  wt_) {
@@ -24,6 +25,7 @@ MsFPOP::MsFPOP(
     d     = Interval(*std::min_element(y_.begin(), y_.end()), *std::max_element(y_.begin(), y_.end()));
     beta  = beta_;
     alpha = alpha_;
+    min_segment = min_segment_;
     y.insert(y.begin(), 0);
     if (wt_.size()==1 && wt_[0] == 0)
     {
@@ -70,11 +72,17 @@ void MsFPOP::Search() {
             
             (3) we update the minimum cost of segmentation and associated changepoint candidate.
         */
+        std::cout << "t: " << t << std::endl;
         F = std::numeric_limits<double>::max();
         for (int i {0}; i<vector_of_it_candidates.size()-1; i++)
         {
             (*vector_of_it_candidates[i]).Add_quadratic(wt[t], y[t]); //(1)
-            (*vector_of_it_candidates[i]).Set_penalty(-beta * std::log(t-(*vector_of_it_candidates[i]).Get_tau())); //(2)
+            if (t-(*vector_of_it_candidates[i]).Get_tau() > min_segment) {
+                std::cout << t-(*vector_of_it_candidates[i]).Get_tau() << std::endl;
+                (*vector_of_it_candidates[i]).Set_penalty(-beta * std::log(t-(*vector_of_it_candidates[i]).Get_tau())); //(2)
+            } else {
+                (*vector_of_it_candidates[i]).Set_penalty(std::numeric_limits<double>::infinity()); //(2)
+            }
             min_candidate = (*vector_of_it_candidates[i]).Minimum_of_cost_function(); 
             if (min_candidate < F) //(3)
             {

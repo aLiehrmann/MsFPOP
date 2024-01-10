@@ -9,6 +9,7 @@
 #' @param beta A constant used in the the penalty.
 #' @param alpha A constant used in the the penalty.
 #' (recommended: gamma+beta*log(length(y)))
+#' @param min_segment A constraint on the minimum segment length.
 #' @param sampling_method A sampling method for changepoint candidates ("rand", "all").
 #' @param sampling_method_parameter A parameter used by the sampling method.
 #' @param wt A vector of weights associated to the observations.
@@ -18,6 +19,7 @@ MsFPOP <- function(
   y, 
   beta, 
   alpha, 
+  min_segment=0,
   sampling_method="rand", 
   sampling_method_parameter=1, 
   wt) {
@@ -39,7 +41,7 @@ MsFPOP <- function(
   if (!sampling_method%in%c("rand","all")) {
     stop("sampling_method should be 'rand' or 'all'")
   }
-  return (MsFPOP_cpp(y, beta, alpha, sampling_method, sampling_method_parameter, wt))
+  return (MsFPOP_cpp(y, beta, alpha, min_segment, sampling_method, sampling_method_parameter, wt))
 }
 
 

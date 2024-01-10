@@ -5,6 +5,7 @@
 #include <array> 
 #include <iostream> 
 #include <list>
+#include <limits>
 #include <cmath>
 #include "Ordered_list_of_intervals.h"
 
@@ -73,25 +74,28 @@ void Candidate::Compare_to_future_candidates (
     Interval intersection_of_intervals;
     Interval interval;
     Quadratic new_quad;
-    for (int indexe_chosen_future_candidates: chosen_future_candidates)
+    if (pen != std::numeric_limits<double>::infinity())
     {
-        new_quad = quad - (*vector_of_it_candidates[indexe_chosen_future_candidates]).quad;
-        new_quad.Add_coef(pen+cost_up_to_tau-((*vector_of_it_candidates[indexe_chosen_future_candidates]).pen+(*vector_of_it_candidates[indexe_chosen_future_candidates]).cost_up_to_tau),0,0);
-        interval = new_quad.Negative_interval();
-        if (!interval.IsEmpty_or_singleton())
+        for (int indexe_chosen_future_candidates: chosen_future_candidates)
         {
-            list_of_intervals.push_back(interval);
+            new_quad = quad - (*vector_of_it_candidates[indexe_chosen_future_candidates]).quad;
+            new_quad.Add_coef(pen+cost_up_to_tau-((*vector_of_it_candidates[indexe_chosen_future_candidates]).pen+(*vector_of_it_candidates[indexe_chosen_future_candidates]).cost_up_to_tau),0,0);
+            interval = new_quad.Negative_interval();
+            if (!interval.IsEmpty_or_singleton())
+            {
+                list_of_intervals.push_back(interval);
+            }
+            else
+            {
+                z = Ordered_list_of_intervals();
+                break;
+            }    
         }
-        else
+        if (!(z.Is_empty())) 
         {
-            z = Ordered_list_of_intervals();
-            break;
-        }    
-    }
-    if (!(z.Is_empty())) 
-    {
-        intersection_of_intervals = Interval(list_of_intervals);
-        z.Intersect_with(intersection_of_intervals);
+            intersection_of_intervals = Interval(list_of_intervals);
+            z.Intersect_with(intersection_of_intervals);
+        }
     }
 }
 

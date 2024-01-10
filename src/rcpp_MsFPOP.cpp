@@ -12,6 +12,7 @@ List MsFPOP_cpp(
   std::vector<double> y, 
   double beta, 
   double alpha, 
+  int min_segment,
   std::string sampling_method, 
   int sampling_method_parameter, 
   std::vector<double>  wt) {   
@@ -29,6 +30,7 @@ List MsFPOP_cpp(
       y, 
       beta, 
       alpha, 
+      min_segment,
       (*map_sampling_method[sampling_method]), 
       sampling_method_parameter,
       wt
