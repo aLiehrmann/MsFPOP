@@ -72,13 +72,11 @@ void MsFPOP::Search() {
             
             (3) we update the minimum cost of segmentation and associated changepoint candidate.
         */
-        std::cout << "t: " << t << std::endl;
         F = std::numeric_limits<double>::max();
         for (int i {0}; i<vector_of_it_candidates.size()-1; i++)
         {
             (*vector_of_it_candidates[i]).Add_quadratic(wt[t], y[t]); //(1)
             if (t-(*vector_of_it_candidates[i]).Get_tau() > min_segment) {
-                std::cout << t-(*vector_of_it_candidates[i]).Get_tau() << std::endl;
                 (*vector_of_it_candidates[i]).Set_penalty(-beta * std::log(t-(*vector_of_it_candidates[i]).Get_tau())); //(2)
             } else {
                 (*vector_of_it_candidates[i]).Set_penalty(std::numeric_limits<double>::infinity()); //(2)
